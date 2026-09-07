@@ -1,0 +1,48 @@
+ uv run python -m vector_database.pinecone_database.pinecone_document_example
+Dimension: 768
+
+========== UPSERT ==========
+Upsert response:
+UpsertDocumentsResponse(upserted_count=3, response_info=ResponseInfo(raw_headers={'date': 'Mon, 07 Sep 2026 16:44:30 GMT', 'content-type': 'application/json', 'content-length': '20', 'connection': 'keep-alive', 'x-pinecone-request-lsn': '1', 'x-pinecone-api-version': '2026-07', 'x-pinecone-request-latency-ms': '287', 'x-envoy-upstream-service-time': '288', 'x-pinecone-response-duration-ms': '596', 'server': 'envoy'}))
+Documents accepted: 3
+
+========== SEARCH ==========
+
+Search results:
+
+========== FETCH ==========
+Fetched documents:
+--------------------------------
+ID      : article-101
+Title   : Introduction to Vector Databases
+Content : A vector database stores vector embeddings and allows similarity search. Pinecone is a vector database commonly used for RAG applications.
+--------------------------------
+ID      : article-102
+Title   : Introduction to RAG
+Content : Retrieval Augmented Generation combines document retrieval with a large language model. The retriever finds relevant information before the LLM generates an answer.
+
+========== UPDATE ==========
+Update response:
+UpdateDocumentsResponse(matched_records=None, response_info=ResponseInfo(raw_headers={'date': 'Mon, 07 Sep 2026 16:44:31 GMT', 'content-type': 'application/json', 'content-length': '2', 'connection': 'keep-alive', 'x-pinecone-request-lsn': '2', 'x-pinecone-api-version': '2026-07', 'x-pinecone-request-latency-ms': '187', 'x-envoy-upstream-service-time': '188', 'x-pinecone-response-duration-ms': '189', 'server': 'envoy'}))
+
+========== FETCH UPDATED DOCUMENT ==========
+--------------------------------
+ID     : article-101
+Title  : Introduction to Vector Databases
+
+========== LIST DOCUMENTS ==========
+Document ID: article-101
+Document ID: article-102
+Document ID: article-103
+
+========== SEARCH WITH FILTER ==========
+
+========== DELETE ==========
+Delete response:
+DeleteDocumentsResponse(matched_records=None, response_info=ResponseInfo(raw_headers={'date': 'Mon, 07 Sep 2026 16:44:32 GMT', 'content-type': 'application/json', 'content-length': '2', 'connection': 'keep-alive', 'x-pinecone-request-lsn': '3', 'x-pinecone-api-version': '2026-07', 'x-pinecone-request-latency-ms': '160', 'x-envoy-upstream-service-time': '160', 'x-pinecone-response-duration-ms': '161', 'server': 'envoy'}))
+
+========== VERIFY DELETE ==========
+Remaining documents:
+article-103
+
+========== DONE ==========
