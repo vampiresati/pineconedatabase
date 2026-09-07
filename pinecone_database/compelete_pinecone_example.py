@@ -16,13 +16,16 @@ class PinconeOwn:
          self.pc.create_index(name=name,dimension=dimension,metric=metric)
     def has_index(self,name):
         self.pc.has_index(name)
-    def upsert(self,vectors):
-        return self.pc.upsert(vectors=vectors,namespace="default")
-    def query(self,vector,top_k):
-        return self.pc.query(vector=vector,top_k=top_k,include_values=True)
+    def upsert(self,index,vectors):
+        self.index = self.pc.Index(index)
+        return self.index.upsert(vectors=vectors,namespace="default")
+    def query(self,index,vector,top_k):
+        self.index = self.pc.Index(index)
+        return self.index.query(vector=vector,top_k=top_k,include_values=True)
 if __name__=='__main__':
     pinecone_secret_key=get_pipeconeapi_env()
     pineobj=PinconeOwn()
+    indexpc='movie-recommendations-3dimension-cosine'
 #     if pineobj.has_index('movie-recommendations-3dimension-cosine'):
 #         pineobj.delete_index('movie-recommendations-3dimension-cosine')
 #         for p in pineobj.list_index():
@@ -53,9 +56,9 @@ if __name__=='__main__':
             "values": D,
         },
     ]
-    v=pineobj.upsert(vectors=vectors)
-    results_A=pineobj.query(vector=A,top_k=3)
-    results_B=pineobj.query(vector=[1,1,1],top_k=3)
+    v=pineobj.upsert(index=indexpc,vectors=vectors)
+    results_A=pineobj.query(index=indexpc,vector=A,top_k=3)
+    results_B=pineobj.query(index=indexpc,vector=[1,1,1],top_k=3)
     print('results_A')
     print(results_A)
     print('results_B')
