@@ -12,9 +12,9 @@ def length_of_embedding_vector(vector):
 def get_all_documents_vector(documents):
     vector_document=[]
     for document in documents:
-        vector = get_embedding_vector(document["content"])
+        vector = get_embedding_vector(document["title"])
         vector_d=document
-        vector_d['vector']=vector
+        vector_d['embedding']=vector
         vector_document.append(vector_d)
     return vector_document
 

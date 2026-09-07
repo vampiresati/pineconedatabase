@@ -12,6 +12,23 @@ vector=get_embedding_vector("hi this is text")
 fixed_length_of_vector=length_of_embedding_vector(vector)
 
 # pc.create_index(name="articles-ollama",dimension=fixed_length_of_vector,metric="cosine",)
+# Create DOCUMENT-SCHEMA index
+pc.indexes.create(
+    name="articles-ollama",
+    schema={
+        "fields": {
+            "embedding": {
+                "type": "dense_vector",
+                "dimension": 768,
+                "metric": "cosine",
+            },
+            "content": {"type": "string","full_text_search": {},},
+             "title": {"type": "string","full_text_search": {}, },
+
+        }
+    },
+)
+
 idx = pc.Index("articles-ollama")
 
 print("\n========== UPSERT ==========")
@@ -113,7 +130,7 @@ for doc_id, doc in response.documents.items():
     print("--------------------------------")
     print("ID     :", doc_id)
     print("Title  :", doc.title)
-    print("Status :", doc.status)
+
 
 
 # ============================================================
