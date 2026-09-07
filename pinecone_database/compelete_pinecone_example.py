@@ -35,12 +35,12 @@ if __name__=='__main__':
     pinecone_secret_key=get_pipeconeapi_env()
     pineobj=PinconeOwn()
     indexpc='movie-recommendations-3dimension-cosine'
-#     if pineobj.has_index('movie-recommendations-3dimension-cosine'):
-#         pineobj.delete_index('movie-recommendations-3dimension-cosine')
+#     if pineobj.has_index(indexpc):
+#         pineobj.delete_index(indexpc)
 #         for p in pineobj.list_index():
 #             print(p.name)
 #     else:
-#         pineobj.create_index(name="movie-recommendations-3dimension-cosine", dimension=3, metric="cosine")
+#         pineobj.create_index(name=indexpc, dimension=3, metric="cosine")
 #     for p in pineobj.list_index():
 #         print(p.name)
     A=[1, 2, 3]
